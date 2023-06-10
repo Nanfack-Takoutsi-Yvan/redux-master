@@ -1,7 +1,7 @@
 import './App.css'
-import CakeView from './store/slices/cake/cakeView'
-import IceCreamView from './store/slices/icecream/icecreamView'
-import UserView from './store/slices/user/userView'
+import CakeView from './components/cake/cakeView'
+import IceCreamView from './components/iceCream/icecreamView'
+import UserView from './components/users/userView'
 
 function App() {
 

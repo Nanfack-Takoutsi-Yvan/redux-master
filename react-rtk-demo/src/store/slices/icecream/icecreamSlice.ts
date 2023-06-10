@@ -1,18 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit" 
+import { createSlice, PayloadAction } from "@reduxjs/toolkit" 
 import { order as cakeOrder } from "../cake/cakeSlice"
+import { useAppSelector } from "../../types/hooks"
 
-const initialState = {
-  numberOfIceCreams: 10
+type IceCreamState = {
+  numberOfIceCreams: number
+}
+
+const initialState: IceCreamState = {
+  numberOfIceCreams: 20
 }
 
 const iceCreamSlice = createSlice({
   name: "iceCream",
   initialState,
   reducers: {
-    order: function (state, action) {
+    order: function (state, action: PayloadAction<number | undefined>) {
       state.numberOfIceCreams -= action.payload ? action.payload : 1
     },
-    restock: function(state, action) {
+    restock: function(state, action: PayloadAction<number | undefined>) {
       state.numberOfIceCreams += action.payload ? action.payload : 1
     }
   },
@@ -24,4 +29,5 @@ const iceCreamSlice = createSlice({
 })
 
 export const { order, restock } = iceCreamSlice.actions
+export const getNumberOfIceCream = () => useAppSelector((state: any) => state.iceCream.numberOfIceCreams)
 export default iceCreamSlice.reducer
